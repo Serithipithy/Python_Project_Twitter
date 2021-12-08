@@ -1,6 +1,13 @@
+import json
+
 from src.configure.connection import *
 
 from src.services.GoogleMapsService import get_coordinates
+
+
+def generate_json(tweets):
+    with open('./data/tweets_info.json', 'w') as f:
+        json.dump(tweets, f, indent=3)
 
 
 class TwitterService:
@@ -33,7 +40,6 @@ class TwitterService:
                 coordinates = get_coordinates(tweet.author.location)
             else:
                 coordinates = [0, 0]
-
             content = {
                 "text": tweet.text,
                 "author": tweet.author.name,
@@ -41,4 +47,5 @@ class TwitterService:
             }
 
             tweets.append(content)
+        generate_json(tweets)
         return tweets
