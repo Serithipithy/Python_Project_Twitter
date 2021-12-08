@@ -1,5 +1,6 @@
 from src.configure.connection import *
-import json
+
+from src.services.GoogleMapsService import get_coordinates
 
 
 class TwitterService:
@@ -22,15 +23,22 @@ class TwitterService:
     def get_content(self):
         tweets = list()
         for tweet in self.searched_tweets.items(self.max_tweets):
+            if tweet.coordinates is not None:
+                coordinates = tweet.coordinates
+            elif tweet.place is not None:
+                coordinates = tweet.place
+            elif tweet.geo is not None:
+                coordinates = tweet.geo
+            elif tweet.author.location is not None:
+                coordinates = get_coordinates(tweet.author.location)
+            else:
+                coordinates = [0, 0]
+
             content = {
                 "text": tweet.text,
                 "author": tweet.author.name,
-                "author_location": tweet.author.location,
-                "coordinates": tweet.coordinates,
-                "place": tweet.place,
-                "geo": tweet.geo
+                "coordinates": coordinates,
             }
 
             tweets.append(content)
-        for line in tweets:
-            print(line["author_place"])
+        return tweets
