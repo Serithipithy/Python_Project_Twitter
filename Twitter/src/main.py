@@ -1,3 +1,4 @@
+from src.services.MapGeneratorService import generate_map
 from src.services.TwitterService import *
 
 if __name__ == '__main__':
@@ -8,3 +9,4 @@ if __name__ == '__main__':
 
     tw_service.search(hashtag, nr_tweets)
     tw_service.get_content()
+    generate_map()
