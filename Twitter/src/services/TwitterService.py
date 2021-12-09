@@ -28,7 +28,7 @@ class TwitterService:
                                              include_entities="include_entities")
 
     def get_content(self):
-        tweets = list()
+        tweets = {"info": []}
         for tweet in self.searched_tweets.items(self.max_tweets):
             if tweet.coordinates is not None:
                 coordinates = tweet.coordinates
@@ -44,8 +44,13 @@ class TwitterService:
                 "text": tweet.text,
                 "author": tweet.author.name,
                 "coordinates": coordinates,
+                "date":{
+                    "day":tweet.created_at.day,
+                    "month":tweet.created_at.month,
+                    "year":tweet.created_at.year
+                }
             }
 
-            tweets.append(content)
+            tweets["info"].append(content)
         generate_json(tweets)
-        return tweets
+        # return tweets
