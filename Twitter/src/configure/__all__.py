@@ -1,3 +1,6 @@
+"""
+    The constants used for the connection with the Twitter API
+"""
 CONSUMER_KEY="pSITNAy9SFATLgAE18iAjcVVk"
 CONSUMER_SECRET="hXU6aOXpjH92rUyOwhpxRyrYFMnP1PYIYkkDe2iaSUMnJGJGra"
 ACCESS_TOKEN="765323209549971456-BkWJcS2ptF1UjFtQlzQlxUneMfau32y"
