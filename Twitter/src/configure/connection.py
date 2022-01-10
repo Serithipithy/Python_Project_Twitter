@@ -26,7 +26,7 @@ def auth_twitter():
 
         api = tweepy.API(auth, wait_on_rate_limit=True)
 
-        # print("Authentication Succesfull")
+        print("Authentication Succesfull")
         return api
     except KeyError :
         print("Error: Authentication Failed")

@@ -49,23 +49,25 @@ def mark_on_map(info):
                                f'<small>'
                                f'Created on: {info["date"]["day"]}.{info["date"]["month"]}.{info["date"]["year"]}'
                                f'</small> '
-                               f'</br>'
-                               f'<h6><strong>{info["text"]}</strong></h6>',
                       ),
                       tooltip=tooltip,
                       icon=folium.Icon(icon="globe", color="lightblue")).add_to(map)
 
 
-def generate_map():
+def generate_map(hashtag: str, nr_tweets: int):
     """
     Populates the map with in information from the json file. The
     generated file will be located in a folder named "data" and it
     will contain the map html
 
+    :param hashtag: str
+        the raw hashtag from the user
+    :param nr_tweets: int
+        the maximum number of tweets
     """
     with open("./data/tweets_info.json", "r", encoding="utf-8") as f:
         data = json.load(f)
         for chunk in data["info"]:
             mark_on_map(chunk)
-        map.save("../data/tweets_map.html")
+        map.save(f"../data/{hashtag}{nr_tweets}_map.html")
 
