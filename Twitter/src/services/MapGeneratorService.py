@@ -45,6 +45,8 @@ def mark_on_map(info):
                       popup=folium.Popup(
                           html='<style type="text/css" scoped> .leaflet-popup-content-wrapper { width: 250px }</style>'
                                f'<h5><strong>{info["author"]}\'s tweet</strong></h5>'
+                               f'<a href="https://twitter.com/twitter/status/{info["id_str"]}"> Click to '
+                               f'see the tweet</a> '
                                f'</br>'
                                f'<small>'
                                f'Created on: {info["date"]["day"]}.{info["date"]["month"]}.{info["date"]["year"]}'

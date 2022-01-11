@@ -85,7 +85,7 @@ class TwitterService:
             else:
                 coordinates = [0, 0]
             content = {
-                "text": tweet.text,
+                "id_str": tweet.id_str,
                 "author": tweet.author.name,
                 "coordinates": coordinates,
                 "date": {
