@@ -24,8 +24,8 @@ from src.services.MapGeneratorService import generate_map
 from src.services.TwitterService import *
 
 ht_list = list()
-commands = "\tAvailable commands:\n\t\t1.Search for tweets\n\t\t2.History of hashtags searched\n\t\t3.See the " \
-           "commands available\n\t\t4.Quit(or write 'quit')"
+commands = "\tAvailable commands:\n\t\t1.Search for tweets (or add)\n\t\t2.History of hashtags searched in " \
+           "chronologic order\n\t\t3.See the commands available\n\t\t4.Quit(or write 'quit') "
 
 
 def isAlreadyAvailable(hashtag, nr_tweets):
@@ -83,15 +83,19 @@ def displayHashtags():
         print("Already generated maps on this sessions:")
         for file in ht_list:
             print(file[0] + " for " + str(file[1]))
+        print("If you want to see the map that was at a certain moment in this session, you can simply press 1 and \n"
+              "after that, in the input, put again the hashtag and the number corresponding to the one you choose \n"
+              "that is already in this list.")
 
 
-def deleteHTMLS():
+def deleteFiles(path):
     """
-    On exit it deletes the html files generated on
-    that session
+        On exit it deletes the html files generated on that session
 
+    :param path: str
+        folder path
     """
-    folder = '../data'
+    folder = path
     for filename in os.listdir(folder):
         file_path = os.path.join(folder, filename)
         try:
@@ -115,7 +119,8 @@ if __name__ == '__main__':
         elif user_input == '3':
             print(commands)
         elif user_input == '4' or user_input == 'quit':
-            deleteHTMLS()
+            deleteFiles('../data')
+            deleteFiles('./data')
             break
         else:
             print("Please enter a valid command")
