@@ -16,9 +16,7 @@ def auth_twitter():
     """
     Authenticates to the Twitter API
 
-    :return:
-        A tweepy class instance if it's successful or prints an
-        error
+    :return: API | None
     """
     try:
         auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)

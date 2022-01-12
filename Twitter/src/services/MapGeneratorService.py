@@ -43,6 +43,8 @@ def mark_on_map(info, hashtag):
     :param hashtag:
         the used hashtag
     :type hashtag: str
+
+    :return: None
     """
     if info["coordinates"][0] != 0 or info["coordinates"][1] != 0:
         folium.Marker([info["coordinates"][0], info["coordinates"][1]],
@@ -73,6 +75,8 @@ def generate_map(hashtag: str, nr_tweets: int):
     :param nr_tweets:
         the maximum number of tweets
     :type nr_tweets: int
+
+    :return: None
     """
     with open("./data/tweets_info.json", "r", encoding="utf-8") as f:
         data = json.load(f)

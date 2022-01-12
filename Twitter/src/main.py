@@ -40,8 +40,7 @@ def isAlreadyAvailable(hashtag, nr_tweets):
         The maximum number of tweets from the user
     :type nr_tweets: int
 
-    :return: True if there is already a map.
-            Otherwise it returns False.
+    :return: Boolean
     """
     for file in ht_list:
         if file[0] == hashtag and file[1] == nr_tweets:
@@ -53,7 +52,7 @@ def searchHashtag():
     """
     Asks the user for a hashtag and the maximum number and generates
     the map
-
+    :return: None
     """
     raw_hashtag = input("Your hashtag: ")
     hashtag = "#" + raw_hashtag
@@ -89,6 +88,7 @@ def displayHashtags():
     """
     Prints the maps that are already generated
 
+    :return: None
     """
     if len(ht_list) == 0:
         print("No maps generated yet")
@@ -108,6 +108,8 @@ def deleteFiles(path):
     :param path: str
         folder path
     :type path: str
+    :return: None
+
     """
     folder = path
     for filename in os.listdir(folder):

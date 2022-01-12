@@ -18,9 +18,7 @@ def get_coordinates(address):
     Converts an address into coordinates
     :param address:
         the address that has to be converted
-    :return: list
-        the coordinates as a vector of 2 elements
-        by default it returns [0,0] if the location doesn't exist
+    :return: list | list[int]
     """
     if len(address) > 0:
         geolocator = Nominatim(user_agent="Alexandraa")
