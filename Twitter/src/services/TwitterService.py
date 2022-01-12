@@ -11,8 +11,9 @@ def generate_json(tweets):
 
     Parameters
     ----------
-    :param tweets: list
+    :param tweets:
          The list that will be converted into a json file
+     :type tweets: list
     """
     with open('./data/tweets_info.json', 'w') as f:
         json.dump(tweets, f, indent=3)
@@ -58,10 +59,12 @@ class TwitterService:
 
         Parameters
         ----------
-        :param query: str
+        :param query:
             The word that search will be based on
-        :param max_tweets: int
+        :type query: str
+        :param max_tweets:
             The maximum number of tweets that will be searched
+        :type max_tweets: int
         """
         self.max_tweets = max_tweets
         self.searched_tweets = tweepy.Cursor(self.api.search_tweets,

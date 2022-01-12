@@ -25,16 +25,20 @@ from src.services.TwitterService import *
 
 ht_list = list()
 commands = "\tAvailable commands:\n\t\t1.Search for tweets (or add)\n\t\t2.History of hashtags searched in " \
-           "chronologic order\n\t\t3.See the commands available\n\t\t4.Quit(or write 'quit') "
+           "chronologic order\n\t\t3.See the commands available\n\t\t4.Quit(or write 'quit')\n "
+incorrectInput="Please enter valid input!\n> A hashtag must me a word\n> The number of tweets must be an integer and " \
+               "greater than 0 \n"
 
 
 def isAlreadyAvailable(hashtag, nr_tweets):
     """
     verifies if the map was already made
-    :param hashtag: str
+    :param hashtag:
         The hashtag from the user
-    :param nr_tweets: int
+    :type hashtag:  str
+    :param nr_tweets:
         The maximum number of tweets from the user
+    :type nr_tweets: int
 
     :return: True if there is already a map.
             Otherwise it returns False.
@@ -51,9 +55,18 @@ def searchHashtag():
     the map
 
     """
-    raw_hashtag = input("Please enter a hashtag: ")
+    raw_hashtag = input("Your hashtag: ")
     hashtag = "#" + raw_hashtag
-    nr_tweets = int(input("How many tweets would you like to see? "))
+    nr_tweets = input("Maximum number of tweets: ")
+
+    if len(raw_hashtag) == 0 or len(nr_tweets) == 0:
+        print(incorrectInput)
+        searchHashtag()
+    nr_tweets = int(nr_tweets)
+
+    if nr_tweets < 1:
+        print(incorrectInput)
+        searchHashtag()
 
     if isAlreadyAvailable(raw_hashtag, nr_tweets) is True:
         webbrowser.open(
@@ -94,6 +107,7 @@ def deleteFiles(path):
 
     :param path: str
         folder path
+    :type path: str
     """
     folder = path
     for filename in os.listdir(folder):
